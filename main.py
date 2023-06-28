@@ -17,9 +17,14 @@ def success():
         f.save(f.filename)
         width, length, height, volume = detect_and_measure(f.filename)
 
-        return render_template("success.html", name=f.filename,
-                               width=width, length=length, height=height,
-                               volume=volume)
+        data = {
+            'width': width + ' meters',
+            'length': length + ' meters',
+            'height': height + ' meters',
+            'volume': volume + ' cubic meters',
+        }
+
+        return jsonify(data)
 
 
 if __name__ == '__main__':
