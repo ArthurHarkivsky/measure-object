@@ -13,7 +13,7 @@ def upload():
 @app.route('/detect-and-measure', methods=['POST'])
 def success():
     if request.method == 'POST':
-        multiplier = request.args.get('multiplier')
+        multiplier = int(request.args.get('multiplier'))
         f = request.files['file']
         f.save(f.filename)
         width, length, height, volume = detect_and_measure(f.filename, multiplier)
