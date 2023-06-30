@@ -17,17 +17,22 @@ def success():
         f.save(f.filename)
         width, length, height, volume = detect_and_measure(f.filename)
 
-        # data = {
-        #     'width': str(width) + ' meters',
-        #     'length': str(length) + ' meters',
-        #     'height': str(height) + ' meters',
-        #     'volume': str(volume) + ' cubic meters',
-        # }
-        #
-        # return jsonify(data)
-        return render_template("success.html", name=f.filename,
-                               width=width, length=length, height=height,
-                               volume=volume, path='detected_cargo.jpg')
+        data = {
+            'name': 'Cargo from truck AH 0000 AE',
+            'width': str(width) + ' meters',
+            'length': str(length) + ' meters',
+            'height': str(height) + ' meters',
+            'volume': str(volume) + ' cubic meters',
+        }
+
+        return jsonify(data)
+        # return render_template("success.html", name=f.filename,
+        #                        width=width, length=length, height=height,
+        #                        volume=volume, path='detected_cargo.jpg')
+
+@app.route('/detected_cargo.jpg')
+def get_detected_cargo():
+    return send_file('static/detected_cargo.jpg', mimetype='image/jpeg')
 
 
 if __name__ == '__main__':
