@@ -2,18 +2,52 @@
 <head>
     <title>Success</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
         body {
+            font-family: 'Roboto', sans-serif;
             font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
         }
 
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #4285f4;
+        }
+
+        img {
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
-<p>File uploaded successfully</p>
-<p>File name: {{name}}</p>
-<p>Width: {{width}} meters</p>
-<p>Length: {{length}} meters</p>
-<p>Height: {{height}} meters</p>
-<p>Volume: {{volume}} cubic meters</p>
+<div class="container">
+    <p><strong>File uploaded successfully</strong></p>
+    <p>File name: {{ name }}</p>
+    <p>Width: <strong>{{ '{:.2f}'.format(width) }} meters</strong></p>
+    <p>Length: <strong>{{ '{:.2f}'.format(length) }} meters</strong></p>
+    <p>Height: <strong>{{ '{:.2f}'.format(height) }} meters</strong></p>
+    <p>Volume: <strong>{{ '{:.2f}'.format(volume) }} cubic meters</strong></p>
+    <img src="{{ url_for('static', filename='detected_cargo.jpg') }}" alt="Detected cargo">
+</div>
 </body>
 </html>

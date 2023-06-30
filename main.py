@@ -17,14 +17,17 @@ def success():
         f.save(f.filename)
         width, length, height, volume = detect_and_measure(f.filename)
 
-        data = {
-            'width': width + ' meters',
-            'length': length + ' meters',
-            'height': height + ' meters',
-            'volume': volume + ' cubic meters',
-        }
-
-        return jsonify(data)
+        # data = {
+        #     'width': str(width) + ' meters',
+        #     'length': str(length) + ' meters',
+        #     'height': str(height) + ' meters',
+        #     'volume': str(volume) + ' cubic meters',
+        # }
+        #
+        # return jsonify(data)
+        return render_template("success.html", name=f.filename,
+                               width=width, length=length, height=height,
+                               volume=volume, path='detected_cargo.jpg')
 
 
 if __name__ == '__main__':

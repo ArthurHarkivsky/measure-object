@@ -58,7 +58,8 @@ def detect_and_measure(filepath):
     ax.imshow(annotated_image)
     ax.axis('off')
     print(f'Output photo resolution: {annotated_image.shape[1]} x {annotated_image.shape[0]} pixels')
-    # plt.show()
+    output_path = 'static/detected_cargo.jpg'
+    cv2.imwrite(output_path, annotated_image)
 
     return get_sizes(detected_object.landmarks_3d)
 
