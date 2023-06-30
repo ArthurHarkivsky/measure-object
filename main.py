@@ -19,10 +19,10 @@ def success():
 
         data = {
             'name': 'Cargo from truck AH 0000 AE',
-            'width': str(width) + ' meters',
-            'length': str(length) + ' meters',
-            'height': str(height) + ' meters',
-            'volume': str(volume) + ' cubic meters',
+            'width': width,
+            'length': length,
+            'height': height,
+            'volume': volume
         }
 
         return jsonify(data)
