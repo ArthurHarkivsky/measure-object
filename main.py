@@ -13,9 +13,10 @@ def upload():
 @app.route('/detect-and-measure', methods=['POST'])
 def success():
     if request.method == 'POST':
+        multiplier = request.args.get('x')
         f = request.files['file']
         f.save(f.filename)
-        width, length, height, volume = detect_and_measure(f.filename)
+        width, length, height, volume = detect_and_measure(f.filename, multiplier)
 
         data = {
             'name': 'from truck AH 0000 AE',

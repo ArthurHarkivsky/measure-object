@@ -23,7 +23,7 @@ def file_to_array(filepath):
 
 
 # noinspection PyUnresolvedReferences,PyUnboundLocalVariable
-def detect_and_measure(filepath):
+def detect_and_measure(filepath, multiplier):
     # photo_as_array = url_to_array('https://b2cfurniture.com.au/pub/media/catalog/product/cache/3fb871f48f7af5e44260f2d9fd3932a9/e/l/elm-modern-hardwood-dining-chair-black-hardwood-frame-eco-friendly-beige-fabric_3_.jpg')
     photo_as_array = file_to_array(filepath)
     mp_objectron = mp.solutions.objectron
@@ -61,17 +61,17 @@ def detect_and_measure(filepath):
     output_path = 'static/detected_cargo.jpg'
     cv2.imwrite(output_path, annotated_image)
 
-    return get_sizes(detected_object.landmarks_3d)
+    return get_sizes(detected_object.landmarks_3d, multiplier)
 
 
-def get_sizes(landmarks_3d):
+def get_sizes(landmarks_3d, multiplier):
     # Convert landmarks to numpy array
     landmarks_3d_np = np.array([[lm.x, lm.y, lm.z] for lm in landmarks_3d.landmark])
 
     # Calculate distances between opposite corners of the box
-    width = np.linalg.norm(landmarks_3d_np[1] - landmarks_3d_np[5]) * 2
-    length = np.linalg.norm(landmarks_3d_np[2] - landmarks_3d_np[6]) * 2
-    height = np.linalg.norm(landmarks_3d_np[4] - landmarks_3d_np[8]) * 2
+    width = np.linalg.norm(landmarks_3d_np[1] - landmarks_3d_np[5]) * multiplier
+    length = np.linalg.norm(landmarks_3d_np[2] - landmarks_3d_np[6]) * multiplier
+    height = np.linalg.norm(landmarks_3d_np[4] - landmarks_3d_np[8]) * multiplier
     volume = width * length * height
 
     return width, length, height, volume
