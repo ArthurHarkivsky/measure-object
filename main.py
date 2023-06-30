@@ -18,7 +18,7 @@ def success():
         width, length, height, volume = detect_and_measure(f.filename)
 
         data = {
-            'name': 'Cargo from truck AH 0000 AE',
+            'name': 'From truck AH 0000 AE',
             'width': width,
             'length': length,
             'height': height,
